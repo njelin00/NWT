@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Pinterest - web page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <my-app>Loading...</my-app>
+    <div class="header">
+        <div class="leftHeaderContent">
+            <input type="text" class="form-control" placeholder="Search" #inputTodo (keyup.enter)="addTodo(inputTodo)">
+        </div>
+        <div class="rightHeaderContent">
+            <ul> 
+              <li><a href="link1.html">O stranici</a></li>
+              <li><a href="link2.html">Povijest</a></li>
+					    <li><a href="link3.html">Kontakt</a></li>
+            </ul>
+        </div>
+
+
+
+
+
+    </div>
+
+  </body>
+</html>
