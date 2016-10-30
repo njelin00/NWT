@@ -20,23 +20,31 @@
   <!-- 3. Display the application -->
   <body>
     <my-app>Loading...</my-app>
+
     <div class="header">
         <div class="leftHeaderContent">
-            <input type="text" class="form-control" placeholder="Search" #inputTodo (keyup.enter)="addTodo(inputTodo)">
+            <!-- Just an image -->
+        <nav class="navbar navbar-light bg-faded">
+          <a class="navbar-brand" href="#">
+            <img src="/assets/pinterest_logo.png" width="30" height="30" alt="">
+            <input class="form-control" type="text" placeholder="Search">
+          </a>
+        </nav>
         </div>
         <div class="rightHeaderContent">
-            <ul> 
-              <li><a href="link1.html">O stranici</a></li>
-              <li><a href="link2.html">Povijest</a></li>
-					    <li><a href="link3.html">Kontakt</a></li>
-            </ul>
+            <a href="link1.html">Categories</a>
+            <a href="link2.html">Profile</a>
+					  <a href="link3.html">Notifications</a>
         </div>
+      </div>
 
 
+ <div class="MainContainer">
 
+  </div>
 
-
+  <div id="footer" class="cf">
+      Copyright <br> NWT
     </div>
-
   </body>
 </html>
