@@ -9,23 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var ng_bootstrap_1 = require('@ng-bootstrap/ng-bootstrap');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var pincard_component_1 = require('./pincard.component');
-var header_component_1 = require('./header.component');
-var AppModule = (function () {
-    function AppModule() {
+var PinCard = (function () {
+    function PinCard() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, ng_bootstrap_1.NgbModule.forRoot()],
-            declarations: [app_component_1.AppComponent, pincard_component_1.default, header_component_1.default],
-            bootstrap: [app_component_1.AppComponent]
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], PinCard.prototype, "pinItem", void 0);
+    PinCard = __decorate([
+        core_1.Component({
+            selector: 'pin-card',
+            templateUrl: './app/views/pinCard.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], PinCard);
+    return PinCard;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = PinCard;
+//# sourceMappingURL=pincard.component.js.map

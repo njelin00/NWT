@@ -11,11 +11,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.pinItems = [];
+        this.pinItems = [
+            {
+                name: "Pin1",
+                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/4d/4c/df/4d4cdfed1847a9c1cc95a32cf2f3cf06.jpg'
+            },
+            {
+                name: "Pin3",
+                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/4d/4c/df/4d4cdfed1847a9c1cc95a32cf2f3cf06.jpg'
+            },
+            {
+                name: "Pin4",
+                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/4d/4c/df/4d4cdfed1847a9c1cc95a32cf2f3cf06.jpg'
+            },
+            {
+                name: "Pin2",
+                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/4d/4c/df/4d4cdfed1847a9c1cc95a32cf2f3cf06.jpg'
+            }];
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: ''
+            template: "\n    <my-header></my-header>\n    <div class=\"container\">\n        <div class=\"card-group\">\n            <div *ngFor=\"let item of pinItems\" class=\"card\">\n                <pin-card [pinItem]=\"item\"></pin-card>\n            </div>\n        </div>\n    </div>\n "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

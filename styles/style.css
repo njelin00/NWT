@@ -1,0 +1,31 @@
+.full-width{
+
+    width:100% !important;
+}
+.pos-rel{
+ position:relative;
+}
+.save-pin-button, .share-like-group{
+    display: none;
+}
+.pos-rel:hover .save-pin-button{
+
+
+    position:absolute;
+    top:20px;
+    display: block;
+    right:0px;
+    float:right;
+
+}
+.pos-rel:hover .share-like-group{
+
+
+    position:absolute;
+    top:20px;
+    display: block;
+    left:0px;
+    float:left;
+
+}
+
