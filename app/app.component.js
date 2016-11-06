@@ -13,7 +13,7 @@ var AppComponent = (function () {
     function AppComponent() {
         this.pinItems = [];
         this.pinItems = [
-            {
+            { 
                 name: "Food",
                 imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/2e/6b/e3/2e6be3475bfcbdda7f913fc4ccec01f1.jpg',
                 text: "Browned Butter Honey Garlic Salmon is a great way to change up any salmon dinner! Only 3 main ingredients in under 15 minutes! ORIGINAL…",
