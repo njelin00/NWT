@@ -1,8 +1,11 @@
 <nav class="navbar navbar-light bg-faded">
         <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header" aria-expanded="false" aria-label="Toggle navigation"></button>
-        <div class="collapse navbar-toggleable-xs" id="navbar-header">
+        <div class=" navbar-toggleable-xs" id="navbar-header">
             <div class="col-md-1">
-              <a class="navbar-brand" href="#"><img src="./assets/pinterest_logo.png" width="40px" height= "40px"/></a>
+                 <a class="router-link" routerLink="/home" routerLinkActive="active">
+                  <img src="./assets/pinterest_logo.png" width="40px" height= "40px"/>  
+                 </a>
+          
             </div>
             <div class="col-md-9 ">
                 <form class="form-inline form-search">
@@ -11,7 +14,9 @@
             </div>
             <div class="col-md-2" id="menu">
                 <img src="./assets/hamburger-menu.png" width="30px" height="30px"/>
-                <img src="./assets/profile_icon.png" width="30px" height="30px"/>
+                   <a class="router-link" routerLink="/profile" routerLinkActive="active">
+                      <img src="./assets/profile_icon.png" width="30px" height="30px"/>
+                   </a>
                 <img src="./assets/notifications.png" width="30px" height="30px"/>
             </div>
         </div>

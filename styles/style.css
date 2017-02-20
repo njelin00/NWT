@@ -113,3 +113,8 @@ form.form-search:before {
 	margin: 5px 5px 5px 5px;
 	color: #EDEFF1 !important;
 }
+.modal-dialog{
+
+	left:0px!important;
+	top:50px!important;
+}

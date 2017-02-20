@@ -1,0 +1,35 @@
+<div>
+NEKI PROFIL
+<template ngbModalContainer ></template>
+<template  #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Dodaj pin</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+<form [formGroup]= "loginForm" (ngSubmit)="savePin($event,$valid)">
+        <div class="form-group">
+            <label for="formGroupExampleInput">Url Slike</label>
+            <input formControlName="url" type="text" class="form-control" id="formGroupExampleInput" placeholder="Url slike"/>
+        
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Naziv</label>
+            <input  formControlName="name" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Naziv"/>
+        </div>
+          <button type="submit" class="btn btn-primary" >Submit</button>
+  
+        </form>
+  </div>
+  <div class="modal-footer">
+      
+  
+  </div>
+</template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
+<hr>
+</div>
