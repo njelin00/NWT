@@ -11,6 +11,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component");
 var router_1 = require("@angular/router");
 var pincard_component_1 = require("./pincard.component");
+var profilePins_component_1 = require("./profilePins.component");
 var header_component_1 = require("./header.component");
 var footer_component_1 = require("./footer.component");
 var Home_1 = require("./routeComponents/Home");
@@ -37,7 +38,7 @@ AppModule = __decorate([
                 { path: '**', component: PageNotFound_1.default } /*Sve ostale rute koriste PageNotFound komponentu*/
             ])
         ],
-        declarations: [app_component_1.AppComponent, pincard_component_1.default, header_component_1.default, Home_1.default, PageNotFound_1.default, footer_component_1.default, Profile_1.default],
+        declarations: [app_component_1.AppComponent, pincard_component_1.default, header_component_1.default, Home_1.default, PageNotFound_1.default, footer_component_1.default, Profile_1.default, profilePins_component_1.default],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

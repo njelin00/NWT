@@ -32,7 +32,7 @@ form.form-search:before {
     padding-top: 15px;
 }
 
-.save-pin-button, .share-like-group{
+.save-pin-button, .delete-pin-button, .share-like-group{
     display: none;
 }
 .pos-rel:hover .save-pin-button{
@@ -45,6 +45,19 @@ form.form-search:before {
     float:right;
 
 }
+
+.pos-rel:hover .delete-pin-button{
+
+
+    position:absolute;
+    top:20px;
+    display: block;
+    right:0px;
+    float:right;
+
+}
+
+
 .pos-rel:hover .share-like-group{
 
 
@@ -115,6 +128,16 @@ form.form-search:before {
 }
 .modal-dialog{
 
-	left:0px!important;
-	top:50px!important;
+	left:50px!important;
+	top:100px!important;
 }
+
+.rounded-circle{
+	border: 2px solid black;
+}
+
+#profileName{
+	text-align: center;
+}
+
+

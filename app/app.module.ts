@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 import { RouterModule } from '@angular/router';
 import  PinCard  from './pincard.component';
+import ProfilePins from './profilePins.component';
 import  Header  from './header.component';
 import  Footer  from './footer.component';
 import Home from './routeComponents/Home';
@@ -26,7 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
                      { path: '**', component: PageNotFound } /*Sve ostale rute koriste PageNotFound komponentu*/
                     ])
                 ],
-  declarations: [ AppComponent, PinCard, Header ,Home, PageNotFound,Footer,Profile],
+  declarations: [ AppComponent, PinCard, Header ,Home, PageNotFound,Footer,Profile, ProfilePins],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

@@ -16,13 +16,36 @@ var ProfileComponent = (function () {
         this.modalService = modalService;
         this.fb = fb;
         this.loginForm = this.fb.group({
-            url: ["", forms_1.Validators.required],
-            name: ["", forms_1.Validators.required]
+            korisnickoime: ["", forms_1.Validators.required],
+            lozinka: ["", forms_1.Validators.required]
         });
+        this.saveForm = this.fb.group({
+            url: ["", forms_1.Validators.required],
+            name: ["", forms_1.Validators.required],
+            opis: ["", forms_1.Validators.required],
+            komentar: ["", forms_1.Validators.required],
+        });
+        this.pinItems = [];
+        this.pinItems = [
+            {
+                name: "Food",
+                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/2e/6b/e3/2e6be3475bfcbdda7f913fc4ccec01f1.jpg',
+                text: "Browned Butter Honey Garlic Salmon is a great way to change up any salmon dinner! Only 3 main ingredients in under 15 minutes! ORIGINAL…",
+                min: "2",
+                user: "CafeDelites",
+                userInfo: "Browned Butter Honey Garlic Salmon! So crispy and juicy."
+            }
+        ];
     }
+    ProfileComponent.prototype.login = function (e, isValid) {
+        var korisnickoimeInput = this.loginForm.controls["korisnickoime"].value;
+        var lozinkaInput = this.loginForm.controls["lozinka"].value;
+    };
     ProfileComponent.prototype.savePin = function (e, isValid) {
-        var nameInput = this.loginForm.controls["name"].value;
-        var urlInput = this.loginForm.controls["url"].value;
+        var nameInput = this.saveForm.controls["name"].value;
+        var urlInput = this.saveForm.controls["url"].value;
+        var opisInput = this.saveForm.controls["opis"].value;
+        var komentarInput = this.saveForm.controls["komentar"].value;
     };
     ProfileComponent.prototype.open = function (content) {
         var _this = this;

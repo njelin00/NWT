@@ -1,35 +1,87 @@
 <div>
-NEKI PROFIL
-<template ngbModalContainer ></template>
-<template  #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Dodaj pin</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-<form [formGroup]= "loginForm" (ngSubmit)="savePin($event,$valid)">
-        <div class="form-group">
-            <label for="formGroupExampleInput">Url Slike</label>
-            <input formControlName="url" type="text" class="form-control" id="formGroupExampleInput" placeholder="Url slike"/>
-        
-        </div>
-        <div class="form-group">
-            <label for="formGroupExampleInput2">Naziv</label>
-            <input  formControlName="name" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Naziv"/>
-        </div>
-          <button type="submit" class="btn btn-primary" >Submit</button>
-  
+  <template ngbModalContainer ></template>
+  <template  #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Prijava</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]= "loginForm" (ngSubmit)="login($event,$valid)">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Korisničko ime:</label>
+                    <input formControlName="korisnickoime" type="text" class="form-control" id="formGroupExampleInput" placeholder="Korisnicko ime"/>
+                
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Lozinka:</label>
+                    <input  formControlName="lozinka" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Lozinka"/>
+                </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+          
         </form>
-  </div>
-  <div class="modal-footer">
-      
-  
-  </div>
-</template>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </template>
+  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(content)">Login</button>
+</div>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
 
-<hr>
+<div>
+  <h2 id="profileName">Niko
+      <img src="assets/avatar(1).png" height="80px" width="80px" class="rounded-circle">
+  </h2>
+
+  <template ngbModalContainer ></template>
+  <template  #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Dodaj pin</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]= "saveForm" (ngSubmit)="savePin($event,$valid)">
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Url Slike</label>
+                    <input formControlName="url" type="text" class="form-control" id="formGroupExampleInput" placeholder="Url slike"/>
+                
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Naziv</label>
+                    <input  formControlName="name" type="text" class="form-control" id="formGroupExampleInput2" placeholder="Naziv"/>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Opis</label>
+                    <input formControlName="opis" type="text" class="form-control" id="formGroupExampleInput" placeholder="Opis"/>
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Komentar</label>
+                    <input formControlName="komentar" type="text" class="form-control" id="formGroupExampleInput" placeholder="Komentar"/>
+                </div>
+                  <button type="submit" class="btn btn-primary" >Submit</button>
+          
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    
+    </div>
+  </template>
+
+  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(content)">Dodaj pin</button>
+
+ <div class="container">
+
+        <div class="card-group">
+            <div *ngFor="let item of pinItems" class="card">
+                <pin-card-2 [pinItem]="item"></pin-card-2>
+            </div>
+            
+        </div>  
+    </div>
+
+  <hr>
 </div>
