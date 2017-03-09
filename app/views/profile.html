@@ -1,6 +1,6 @@
 <div>
   <template ngbModalContainer ></template>
-  <template  #content let-c="close" let-d="dismiss">
+  <template  #loginModal let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Prijava</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -25,8 +25,12 @@
     <div class="modal-footer">
     </div>
   </template>
-  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(content)">Login</button>
+  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(loginModal)">Login</button>
 </div>
+
+
+
+
 
 
 <div>
@@ -35,7 +39,7 @@
   </h2>
 
   <template ngbModalContainer ></template>
-  <template  #content let-c="close" let-d="dismiss">
+  <template  #pinModal let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title">Dodaj pin</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -71,7 +75,7 @@
     </div>
   </template>
 
-  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(content)">Dodaj pin</button>
+  <button style="margin-left:140px" class="btn btn-lg btn-outline-primary" (click)="open(pinModal)">Dodaj pin</button>
 
  <div class="container">
 

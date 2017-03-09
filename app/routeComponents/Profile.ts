@@ -10,6 +10,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export default class ProfileComponent {
 
  closeResult: string;
+
+
+ 
   public loginForm = this.fb.group({
     korisnickoime: ["", Validators.required],
     lozinka: ["", Validators.required]
@@ -50,11 +53,13 @@ login(e,isValid){
     var komentarInput=this.saveForm.controls["komentar"].value;
  }
 
-open(content) {
-    this.modalService.open(content).result.then((result) => {
+open(loginModal) {
+    this.modalService.open(loginModal).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
   }
+
+
 }

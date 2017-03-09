@@ -47,9 +47,9 @@ var ProfileComponent = (function () {
         var opisInput = this.saveForm.controls["opis"].value;
         var komentarInput = this.saveForm.controls["komentar"].value;
     };
-    ProfileComponent.prototype.open = function (content) {
+    ProfileComponent.prototype.open = function (loginModal) {
         var _this = this;
-        this.modalService.open(content).result.then(function (result) {
+        this.modalService.open(loginModal).result.then(function (result) {
             _this.closeResult = "Closed with: " + result;
         }, function (reason) {
             _this.closeResult = "Dismissed";
