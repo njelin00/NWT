@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import  ProfilePins  from './../profilePins.component';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
@@ -10,6 +9,9 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export default class ProfileComponent {
 
  closeResult: string;
+
+
+ 
   public loginForm = this.fb.group({
     korisnickoime: ["", Validators.required],
     lozinka: ["", Validators.required]
@@ -25,18 +27,17 @@ export default class ProfileComponent {
 pinItems=[];
 constructor(private modalService: NgbModal,public fb: FormBuilder)
 {
-     this.pinItems=[
-      {
-        name:"Food",
-        imageUrl:'https://s-media-cache-ak0.pinimg.com/564x/2e/6b/e3/2e6be3475bfcbdda7f913fc4ccec01f1.jpg',
-        text:"Browned Butter Honey Garlic Salmon is a great way to change up any salmon dinner! Only 3 main ingredients in under 15 minutes! ORIGINAL…",
-        min:"2",
-        user:"CafeDelites",
-        userInfo:"Browned Butter Honey Garlic Salmon! So crispy and juicy."
-      }
-     ]
+    var oldPinnedItems=localStorage.getItem("pinnedItems");
+     var oldPinnedItemsJsonArray=JSON.parse(oldPinnedItems) || [];
+     this.pinItems=oldPinnedItemsJsonArray;
 }
+searchValueToSendToHome:string;
 
+
+  onFilterPins($event){
+   this.searchValueToSendToHome=$event;
+  
+  }
 login(e,isValid){ 
     var korisnickoimeInput=this.loginForm.controls["korisnickoime"].value;
     var lozinkaInput=this.loginForm.controls["lozinka"].value;
@@ -50,11 +51,13 @@ login(e,isValid){
     var komentarInput=this.saveForm.controls["komentar"].value;
  }
 
-open(content) {
-    this.modalService.open(content).result.then((result) => {
+open(loginModal) {
+    this.modalService.open(loginModal).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed`;
     });
   }
+
+
 }

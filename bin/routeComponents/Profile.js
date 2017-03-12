@@ -26,17 +26,13 @@ var ProfileComponent = (function () {
             komentar: ["", forms_1.Validators.required],
         });
         this.pinItems = [];
-        this.pinItems = [
-            {
-                name: "Food",
-                imageUrl: 'https://s-media-cache-ak0.pinimg.com/564x/2e/6b/e3/2e6be3475bfcbdda7f913fc4ccec01f1.jpg',
-                text: "Browned Butter Honey Garlic Salmon is a great way to change up any salmon dinner! Only 3 main ingredients in under 15 minutes! ORIGINAL…",
-                min: "2",
-                user: "CafeDelites",
-                userInfo: "Browned Butter Honey Garlic Salmon! So crispy and juicy."
-            }
-        ];
+        var oldPinnedItems = localStorage.getItem("pinnedItems");
+        var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
+        this.pinItems = oldPinnedItemsJsonArray;
     }
+    ProfileComponent.prototype.onFilterPins = function ($event) {
+        this.searchValueToSendToHome = $event;
+    };
     ProfileComponent.prototype.login = function (e, isValid) {
         var korisnickoimeInput = this.loginForm.controls["korisnickoime"].value;
         var lozinkaInput = this.loginForm.controls["lozinka"].value;
@@ -47,9 +43,9 @@ var ProfileComponent = (function () {
         var opisInput = this.saveForm.controls["opis"].value;
         var komentarInput = this.saveForm.controls["komentar"].value;
     };
-    ProfileComponent.prototype.open = function (content) {
+    ProfileComponent.prototype.open = function (loginModal) {
         var _this = this;
-        this.modalService.open(content).result.then(function (result) {
+        this.modalService.open(loginModal).result.then(function (result) {
             _this.closeResult = "Closed with: " + result;
         }, function (reason) {
             _this.closeResult = "Dismissed";

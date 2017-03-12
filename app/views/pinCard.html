@@ -1,12 +1,14 @@
-<div class="card pos-rel">
+<div class="card pos-rel ">
     <img class="card-img-top img-fluid" src={{pinItem.imageUrl}} alt="Card image cap" >
     <div class="card-block ">
          <h4 class="card-title">{{pinItem.name}}</h4>
         <p class="card-text">{{pinItem.text}}</p>
          <p class="card-text"><small class="text-muted">Last updated {{pinItem.min}} mins ago</small></p>
-         <button class="btn btn-danger save-pin-button">Save pin</button>
+         <button [disabled]="pinItem.saving==true"  *ngIf="!pinItem.isPinned" class="btn btn-danger save-pin-button" (click)="onPin(pinItem)">Save pin</button>
+             <button *ngIf="pinItem.isPinned && isProfilePage" class="btn btn-danger save-pin-button">Delete pin</button>
+                <button *ngIf="pinItem.isPinned && !isProfilePage" class="btn btn-danger save-pin-button">Saved</button>
          <div class="btn-group share-like-group">
-              <button class="btn btn-danger icon-share">Share</button>
+              
               <button class="btn btn-danger icon-like">Like</button>
          </div>
          <div class="media">
@@ -17,7 +19,8 @@
                 </div>
                 <div class="media-body">
                     <h6 class="media-heading"><strong>{{pinItem.user}} </strong></h6>
-                    <p>{{pinItem.userInfo}}</p>
+                        <p>{{pinItem.userInfo}}</p>
+                    <button class="btn btn-danger icon-comment">Comment</button>
                 </div>
          </div>
     </div>           

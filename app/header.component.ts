@@ -1,4 +1,4 @@
-import { Component ,Input} from '@angular/core';
+import { Component ,Input,Output,EventEmitter} from '@angular/core';
 @Component({
   selector: 'my-header',
   templateUrl:'./app/views/header.html'
@@ -7,6 +7,13 @@ import { Component ,Input} from '@angular/core';
 
 export default class Header {
 
- 
+searchValue:string;
+ @Output()
+ filteringPins=new EventEmitter();
+
+ handleSearchInputNewValue(value)
+ {debugger;
+   this.filteringPins.emit(value)
+ }
 
 }

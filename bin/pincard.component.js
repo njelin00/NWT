@@ -12,12 +12,25 @@ var core_1 = require("@angular/core");
 var PinCard = (function () {
     function PinCard() {
     }
+    PinCard.prototype.onPin = function (pinItem) {
+        pinItem.saving = true;
+        pinItem.isPinned = true;
+        var oldPinnedItems = localStorage.getItem("pinnedItems");
+        var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
+        oldPinnedItemsJsonArray.push(pinItem);
+        localStorage.setItem("pinnedItems", JSON.stringify(oldPinnedItemsJsonArray));
+        console.log(localStorage);
+    };
     return PinCard;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], PinCard.prototype, "pinItem", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], PinCard.prototype, "isProfilePage", void 0);
 PinCard = __decorate([
     core_1.Component({
         selector: 'pin-card',
