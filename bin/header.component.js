@@ -14,7 +14,6 @@ var Header = (function () {
         this.filteringPins = new core_1.EventEmitter();
     }
     Header.prototype.handleSearchInputNewValue = function (value) {
-        debugger;
         this.filteringPins.emit(value);
     };
     return Header;

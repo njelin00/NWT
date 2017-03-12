@@ -7,13 +7,13 @@ import { Component ,Input,Output,EventEmitter} from '@angular/core';
 
 export default class Header {
 
-searchValue:string;
- @Output()
- filteringPins=new EventEmitter();
+  searchValue:string;
+  @Output()
+  filteringPins=new EventEmitter();
 
- handleSearchInputNewValue(value)
- {debugger;
-   this.filteringPins.emit(value)
- }
+  handleSearchInputNewValue(value)
+  {
+      this.filteringPins.emit(value)
+  }
 
 }

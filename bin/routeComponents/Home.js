@@ -20,7 +20,7 @@ var HomeRouteComponent = (function () {
                 text: "Browned Butter Honey Garlic Salmon is a great way to change up any salmon dinner! Only 3 main ingredients in under 15 minutes! ORIGINAL…",
                 min: "2",
                 user: "CafeDelites",
-                userInfo: "Browned Butter Honey Garlic Salmon! So crispy and juicy.",
+                userInfo: "Browned Butter Honey Garlic Salmon! So crispy and juicy."
             },
             {
                 name: "Funny",
