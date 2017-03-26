@@ -36,7 +36,6 @@ var PinCard = (function () {
     };
     PinCard.prototype.onDelete = function () {
         var _this = this;
-        debugger;
         var idOfElementToBeDeleted = this.pinItem.id;
         var oldPinnedItems = localStorage.getItem("pinnedItems");
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
@@ -66,6 +65,28 @@ var PinCard = (function () {
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
         oldPinnedItemsJsonArray.push(pinItem);
         localStorage.setItem("pinnedItems", JSON.stringify(oldPinnedItemsJsonArray));
+        console.log(localStorage);
+    };
+    PinCard.prototype.onLike = function (pinItem) {
+        pinItem.isLike = true;
+        var oldLikedItems = localStorage.getItem("likedItems");
+        var oldLikedItemsJsonArray = JSON.parse(oldLikedItems) || [];
+        oldLikedItemsJsonArray.push(pinItem);
+        localStorage.setItem("likedItems", JSON.stringify(oldLikedItemsJsonArray));
+        console.log(localStorage);
+    };
+    PinCard.prototype.onLiked = function (pinItem) {
+        pinItem.isLike = false;
+        var oldLikedItems = localStorage.getItem("likedItems");
+        var oldLikedItemsJsonArray = JSON.parse(oldLikedItems) || [];
+        function isLiked(element) {
+            if (pinItem.id == element.id) {
+                return element;
+            }
+        }
+        var index = oldLikedItemsJsonArray.findIndex(isLiked);
+        oldLikedItemsJsonArray.splice(index, 1);
+        localStorage.setItem("likedItems", JSON.stringify(oldLikedItemsJsonArray));
         console.log(localStorage);
     };
     return PinCard;

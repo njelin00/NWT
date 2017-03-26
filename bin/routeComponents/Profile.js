@@ -23,7 +23,6 @@ var ProfileComponent = (function () {
             url: ["", forms_1.Validators.required],
             name: ["", forms_1.Validators.required],
             opis: ["", forms_1.Validators.required],
-            komentar: ["", forms_1.Validators.required],
         });
         this.pinItems = [];
         this.getFromStorage();
@@ -32,6 +31,15 @@ var ProfileComponent = (function () {
         var oldPinnedItems = localStorage.getItem("pinnedItems");
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
         this.pinItems = oldPinnedItemsJsonArray;
+        var oldLikedItems = localStorage.getItem("likedItems");
+        var oldLikedItemsJsonArray = JSON.parse(oldLikedItems) || [];
+        this.pinItems.forEach(function (pinItem) {
+            oldLikedItemsJsonArray.forEach(function (oldLikeItem) {
+                if (pinItem.id == oldLikeItem.id) {
+                    pinItem.isLike = true;
+                }
+            });
+        });
     };
     ProfileComponent.prototype.refreshPins = function () {
         this.getFromStorage();

@@ -90,4 +90,28 @@ export default class PinCard {
      console.log(localStorage);
      
    }
+   onLike(pinItem){
+     pinItem.isLike=true;
+     var oldLikedItems=localStorage.getItem("likedItems");
+     var oldLikedItemsJsonArray=JSON.parse(oldLikedItems) || [];
+     oldLikedItemsJsonArray.push(pinItem);
+     localStorage.setItem("likedItems",JSON.stringify(oldLikedItemsJsonArray));
+     console.log(localStorage);
+     
+   }
+   onLiked(pinItem){
+     pinItem.isLike=false;
+     var oldLikedItems=localStorage.getItem("likedItems");
+     var oldLikedItemsJsonArray=JSON.parse(oldLikedItems) || [];
+     function isLiked(element)
+     {
+       if(pinItem.id == element.id) {return element;}
+     }
+     var index=oldLikedItemsJsonArray.findIndex(isLiked);
+     oldLikedItemsJsonArray.splice(index,1);
+
+     localStorage.setItem("likedItems",JSON.stringify(oldLikedItemsJsonArray));
+     console.log(localStorage);
+   }
+
 }

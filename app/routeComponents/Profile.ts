@@ -36,6 +36,19 @@ export default class ProfileComponent {
       var oldPinnedItems=localStorage.getItem("pinnedItems");
       var oldPinnedItemsJsonArray=JSON.parse(oldPinnedItems) || [];
       this.pinItems=oldPinnedItemsJsonArray;
+      var oldLikedItems=localStorage.getItem("likedItems");
+      var oldLikedItemsJsonArray=JSON.parse(oldLikedItems) || [];
+      this.pinItems.forEach((pinItem)=>{
+            oldLikedItemsJsonArray.forEach((oldLikeItem)=>{
+                  if(pinItem.id==oldLikeItem.id)
+                  {
+                      pinItem.isLike=true;
+                      
+                      
+                  }
+                  
+            })
+      })
   }
 
   searchValueToSendToHome:string;

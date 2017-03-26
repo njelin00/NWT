@@ -64,6 +64,15 @@ var HomeRouteComponent = (function () {
                 }
             });
         });
+        var oldLikedItems = localStorage.getItem("likedItems");
+        var oldLikedItemsJsonArray = JSON.parse(oldLikedItems) || [];
+        this.pinItems.forEach(function (pinItem) {
+            oldLikedItemsJsonArray.forEach(function (oldLikeItem) {
+                if (pinItem.id == oldLikeItem.id) {
+                    pinItem.isLike = true;
+                }
+            });
+        });
     }
     HomeRouteComponent.prototype.refreshPins = function () {
         this.pinItems = this.first4HardcodedPins;
