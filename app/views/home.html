@@ -3,7 +3,8 @@
         <div class="card-group">
             <div  *ngFor="let item of pinItems | filterPins:searchValueToSendToHome" class="col-md-3">
                 <div class="card">
-                    <pin-card [isProfilePage]="false" [pinItem]="item"></pin-card>
+                
+                    <pin-card (onSubmittedComment)="refreshPins()" [isProfilePage]="false" [pinItem]="item"></pin-card>
                 </div> 
             </div>
         </div>  

@@ -9,9 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var HomeRouteComponent = (function () {
-    function HomeRouteComponent() {
+    function HomeRouteComponent(modalService) {
+        this.modalService = modalService;
         this.pinItems = [];
+        this.first4HardcodedPins = [];
         this.pinItems = [
             {
                 name: "Food",
@@ -50,6 +53,8 @@ var HomeRouteComponent = (function () {
                 userInfo: "Portet"
             }
         ];
+        this.first4HardcodedPins = JSON.parse(JSON.stringify(this.pinItems));
+        this.addFromLocalStorage();
         var oldPinnedItems = localStorage.getItem("pinnedItems");
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
         this.pinItems.forEach(function (pinItem) {
@@ -60,8 +65,22 @@ var HomeRouteComponent = (function () {
             });
         });
     }
+    HomeRouteComponent.prototype.refreshPins = function () {
+        this.pinItems = this.first4HardcodedPins;
+        this.addFromLocalStorage();
+    };
     HomeRouteComponent.prototype.onFilterPins = function ($event) {
         this.searchValueToSendToHome = $event;
+    };
+    HomeRouteComponent.prototype.onComment = function (addComment) {
+    };
+    HomeRouteComponent.prototype.addFromLocalStorage = function () {
+        var _this = this;
+        var oldItems = localStorage.getItem("newItems");
+        var oldSavedItemsJsonArray = JSON.parse(oldItems) || [];
+        oldSavedItemsJsonArray.forEach(function (savedItem) {
+            _this.pinItems.push(savedItem);
+        });
     };
     return HomeRouteComponent;
 }());
@@ -70,7 +89,7 @@ HomeRouteComponent = __decorate([
         selector: "home",
         templateUrl: './app/views/home.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [ng_bootstrap_1.NgbModal])
 ], HomeRouteComponent);
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = HomeRouteComponent;

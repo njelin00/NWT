@@ -58,10 +58,6 @@
                             <label for="formGroupExampleInput">Opis</label>
                             <input formControlName="opis" type="text" class="form-control" id="formGroupExampleInput" placeholder="Opis"/>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">Komentar</label>
-                            <input formControlName="komentar" type="text" class="form-control" id="formGroupExampleInput" placeholder="Komentar"/>
-                        </div>
                         <button type="submit" class="btn btn-primary" >Submit</button>
                 
                 </form>
@@ -76,7 +72,7 @@
             <div class="card-group">
                 <div *ngFor="let item of pinItems  | filterPins:searchValueToSendToHome" class="col-md-3">
                     <div class="card">
-                    <pin-card isProfilePage="true" [pinItem]="item"></pin-card>
+                    <pin-card (onDeletedPin)="refreshPins()" isProfilePage="true" [pinItem]="item"></pin-card>
                     </div>
                 </div>
             </div>  

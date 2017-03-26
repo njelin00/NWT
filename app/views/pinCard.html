@@ -1,3 +1,22 @@
+<template ngbModalContainer ></template>
+    <template  #addComment let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title">Dodaj pin</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]= "commentsForm" (ngSubmit)="submitComment($event,$valid)">
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Komentar</label>
+                            <input formControlName="komentar" type="text" class="form-control" id="formGroupExampleInput" placeholder="Komentar"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer"> </div>
+    </template>
 <div class="card pos-rel ">
     <img class="card-img-top img-fluid" src={{pinItem.imageUrl}} alt="Card image cap" >
     <div class="card-block ">
@@ -5,7 +24,7 @@
         <p class="card-text">{{pinItem.text}}</p>
          <p class="card-text"><small class="text-muted">Last updated {{pinItem.min}} mins ago</small></p>
          <button [disabled]="pinItem.saving==true"  *ngIf="!pinItem.isPinned" class="btn btn-danger save-pin-button" (click)="onPin(pinItem)">Save pin</button>
-             <button *ngIf="pinItem.isPinned && isProfilePage" class="btn btn-danger save-pin-button">Delete pin</button>
+             <button *ngIf="pinItem.isPinned && isProfilePage" (click)="onDelete(pinItem)" class="btn btn-danger save-pin-button">Delete pin</button>
                 <button *ngIf="pinItem.isPinned && !isProfilePage" class="btn btn-danger save-pin-button">Saved</button>
          <div class="btn-group share-like-group">
               
@@ -20,7 +39,8 @@
                 <div class="media-body">
                     <h6 class="media-heading"><strong>{{pinItem.user}} </strong></h6>
                         <p>{{pinItem.userInfo}}</p>
-                    <button class="btn btn-danger icon-comment">Comment</button>
+                    <button (click)="onComment(addComment)" *ngIf="pinItem.userInfo==null || pinItem.userInfo.length==0"
+                         class="btn btn-danger icon-comment">Comment</button>
                 </div>
          </div>
     </div>           

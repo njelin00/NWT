@@ -1,21 +1,48 @@
 import { Component, Input } from '@angular/core';
 import  PinCard  from './../pincard.component';
+import {NgbModal, ModalDismissReasons,NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+
+
+
 @Component({
     selector: "home", 
     templateUrl:'./app/views/home.html'
 })
 export default class HomeRouteComponent {
 
+refreshPins(){
+    this.pinItems=this.first4HardcodedPins;
+    this.addFromLocalStorage();
+}
 
 searchValueToSendToHome:string;
 
+ 
+closeResult: string;
+modalRef:NgbModalRef;
 
-  onFilterPins($event){
-   this.searchValueToSendToHome=$event;
-  
-  }
-  pinItems=[];
-  constructor(){
+
+onFilterPins($event){
+  this.searchValueToSendToHome=$event;
+}
+   
+   
+onComment(addComment){
+       
+}
+
+addFromLocalStorage(){
+     var oldItems=localStorage.getItem("newItems");
+     var oldSavedItemsJsonArray=JSON.parse(oldItems) || [];
+     oldSavedItemsJsonArray.forEach((savedItem)=>{
+     this.pinItems.push(savedItem);
+    })
+}
+
+pinItems:Models.Pin[]=[];
+first4HardcodedPins:any=[];
+
+constructor(private modalService: NgbModal){
 
 
     this.pinItems=[
@@ -55,7 +82,13 @@ searchValueToSendToHome:string;
         min:"2",
         user:"Acrylic Art Marian de Jong ",
         userInfo:"Portet"
-      }]
+      }];
+
+
+      this.first4HardcodedPins=JSON.parse(JSON.stringify(this.pinItems));
+      
+      this.addFromLocalStorage();
+     
       var oldPinnedItems=localStorage.getItem("pinnedItems");
       var oldPinnedItemsJsonArray=JSON.parse(oldPinnedItems) || [];
       this.pinItems.forEach((pinItem)=>{
@@ -67,5 +100,4 @@ searchValueToSendToHome:string;
             })
       })
   }
-
 }

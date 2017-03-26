@@ -26,10 +26,16 @@ var ProfileComponent = (function () {
             komentar: ["", forms_1.Validators.required],
         });
         this.pinItems = [];
+        this.getFromStorage();
+    }
+    ProfileComponent.prototype.getFromStorage = function () {
         var oldPinnedItems = localStorage.getItem("pinnedItems");
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
         this.pinItems = oldPinnedItemsJsonArray;
-    }
+    };
+    ProfileComponent.prototype.refreshPins = function () {
+        this.getFromStorage();
+    };
     ProfileComponent.prototype.onFilterPins = function ($event) {
         this.searchValueToSendToHome = $event;
     };
@@ -41,11 +47,32 @@ var ProfileComponent = (function () {
         var nameInput = this.saveForm.controls["name"].value;
         var urlInput = this.saveForm.controls["url"].value;
         var opisInput = this.saveForm.controls["opis"].value;
-        var komentarInput = this.saveForm.controls["komentar"].value;
+        if (nameInput == null || urlInput == null || opisInput == null ||
+            nameInput == "" || urlInput == "" || opisInput == "") {
+            alert("Niste unijeli sve podatke");
+            return;
+        }
+        var oldItems = localStorage.getItem("newItems");
+        var oldSavedItemsJsonArray = JSON.parse(oldItems) || [];
+        var numOfElementsInStorage = oldSavedItemsJsonArray.length;
+        var nextId = 4 + numOfElementsInStorage + 1;
+        var newItem = {
+            id: nextId,
+            name: nameInput,
+            imageUrl: urlInput,
+            text: opisInput,
+        };
+        var oldItems = localStorage.getItem("newItems");
+        var oldSavedItemsJsonArray = JSON.parse(oldItems) || [];
+        oldSavedItemsJsonArray.push(newItem);
+        var newItems = oldSavedItemsJsonArray;
+        localStorage.setItem("newItems", JSON.stringify(newItems));
+        this.modalRef.close();
     };
     ProfileComponent.prototype.open = function (loginModal) {
         var _this = this;
-        this.modalService.open(loginModal).result.then(function (result) {
+        this.modalRef = this.modalService.open(loginModal);
+        this.modalRef.result.then(function (result) {
             _this.closeResult = "Closed with: " + result;
         }, function (reason) {
             _this.closeResult = "Dismissed";
