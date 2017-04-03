@@ -23,15 +23,27 @@ var ProfileComponent = (function () {
             url: ["", forms_1.Validators.required],
             name: ["", forms_1.Validators.required],
             opis: ["", forms_1.Validators.required],
-            komentar: ["", forms_1.Validators.required],
         });
         this.pinItems = [];
         this.getFromStorage();
+        this.setUsername();
     }
+    ProfileComponent.prototype.setUsername = function () {
+        this.loginUsername = localStorage.getItem("loginUser") || 'You are not logged in';
+    };
     ProfileComponent.prototype.getFromStorage = function () {
         var oldPinnedItems = localStorage.getItem("pinnedItems");
         var oldPinnedItemsJsonArray = JSON.parse(oldPinnedItems) || [];
         this.pinItems = oldPinnedItemsJsonArray;
+        var oldLikedItems = localStorage.getItem("likedItems");
+        var oldLikedItemsJsonArray = JSON.parse(oldLikedItems) || [];
+        this.pinItems.forEach(function (pinItem) {
+            oldLikedItemsJsonArray.forEach(function (oldLikeItem) {
+                if (pinItem.id == oldLikeItem.id) {
+                    pinItem.isLike = true;
+                }
+            });
+        });
     };
     ProfileComponent.prototype.refreshPins = function () {
         this.getFromStorage();
@@ -42,6 +54,14 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.login = function (e, isValid) {
         var korisnickoimeInput = this.loginForm.controls["korisnickoime"].value;
         var lozinkaInput = this.loginForm.controls["lozinka"].value;
+        if (korisnickoimeInput == null || lozinkaInput == null ||
+            korisnickoimeInput == "" || lozinkaInput == "") {
+            alert("Niste unijeli sve podatke");
+            return;
+        }
+        localStorage.setItem("loginUser", korisnickoimeInput);
+        this.setUsername();
+        this.modalRef.close();
     };
     ProfileComponent.prototype.savePin = function (e, isValid) {
         var nameInput = this.saveForm.controls["name"].value;

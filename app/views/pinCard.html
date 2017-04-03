@@ -28,7 +28,10 @@
                 <button *ngIf="pinItem.isPinned && !isProfilePage" class="btn btn-danger save-pin-button">Saved</button>
          <div class="btn-group share-like-group">
               
-              <button class="btn btn-danger icon-like">Like</button>
+              <button class="btn btn-danger icon-like"  *ngIf="!pinItem.isLike" (click)="onLike(pinItem)">Like</button>
+              <button class="btn btn-danger icon-like"  *ngIf="pinItem.isLike" (click)="onLiked(pinItem)">Liked
+                  <img class="media-object" src="./assets/heart.png" width="40px" height="40px">  
+              </button>
          </div>
          <div class="media">
                 <div class="media-left">
@@ -39,7 +42,7 @@
                 <div class="media-body">
                     <h6 class="media-heading"><strong>{{pinItem.user}} </strong></h6>
                         <p>{{pinItem.userInfo}}</p>
-                    <button (click)="onComment(addComment)" *ngIf="pinItem.userInfo==null || pinItem.userInfo.length==0"
+                    <button (click)="onComment(addComment)" *ngIf="(pinItem.userInfo==null || pinItem.userInfo.length==0) && !isProfilePage"
                          class="btn btn-danger icon-comment">Comment</button>
                 </div>
          </div>

@@ -12,7 +12,7 @@ export default class ProfileComponent {
 
   closeResult: string;
   modalRef: NgbModalRef;
-
+ loginUsername:string;
  
   public loginForm = this.fb.group({
     korisnickoime: ["", Validators.required],
@@ -30,12 +30,28 @@ export default class ProfileComponent {
   constructor(private modalService: NgbModal,public fb: FormBuilder)
   {
       this.getFromStorage();
+   this.setUsername();
   }
-
+  setUsername(){
+      this.loginUsername=localStorage.getItem("loginUser") || 'You are not logged in'
+  }
   getFromStorage(){
       var oldPinnedItems=localStorage.getItem("pinnedItems");
       var oldPinnedItemsJsonArray=JSON.parse(oldPinnedItems) || [];
       this.pinItems=oldPinnedItemsJsonArray;
+      var oldLikedItems=localStorage.getItem("likedItems");
+      var oldLikedItemsJsonArray=JSON.parse(oldLikedItems) || [];
+      this.pinItems.forEach((pinItem)=>{
+            oldLikedItemsJsonArray.forEach((oldLikeItem)=>{
+                  if(pinItem.id==oldLikeItem.id)
+                  {
+                      pinItem.isLike=true;
+                      
+                      
+                  }
+                  
+            })
+      })
   }
 
   searchValueToSendToHome:string;
@@ -52,6 +68,17 @@ export default class ProfileComponent {
   login(e,isValid){ 
       var korisnickoimeInput=this.loginForm.controls["korisnickoime"].value;
       var lozinkaInput=this.loginForm.controls["lozinka"].value;
+
+
+      if(korisnickoimeInput==null || lozinkaInput==null ||
+      korisnickoimeInput=="" || lozinkaInput==""){
+        alert("Niste unijeli sve podatke");
+        return;
+      }
+        
+        localStorage.setItem("loginUser",korisnickoimeInput);
+        this.setUsername();
+         this.modalRef.close();
   }
 
 
@@ -61,29 +88,29 @@ export default class ProfileComponent {
     var opisInput=this.saveForm.controls["opis"].value;
    
 
-  if(nameInput==null || urlInput==null || opisInput==null ||
-  nameInput=="" || urlInput=="" || opisInput==""){
-    alert("Niste unijeli sve podatke");
-    return;
-  }
+      if(nameInput==null || urlInput==null || opisInput==null ||
+      nameInput=="" || urlInput=="" || opisInput==""){
+        alert("Niste unijeli sve podatke");
+        return;
+      }
 
-    var oldItems=localStorage.getItem("newItems");
-    var oldSavedItemsJsonArray=JSON.parse(oldItems) || [];
-    var numOfElementsInStorage=oldSavedItemsJsonArray.length;
-    var nextId=4+numOfElementsInStorage+1;
-    var newItem:Models.Pin={
-     id:nextId,
-     name:nameInput,
-     imageUrl:urlInput,
-     text:opisInput,
-  
-  }
-     var oldItems=localStorage.getItem("newItems");
-     var oldSavedItemsJsonArray=JSON.parse(oldItems) || [];
-     oldSavedItemsJsonArray.push(newItem);
-     var newItems=oldSavedItemsJsonArray;
-     localStorage.setItem("newItems",JSON.stringify(newItems));
-        this.modalRef.close();
+        var oldItems=localStorage.getItem("newItems");
+        var oldSavedItemsJsonArray=JSON.parse(oldItems) || [];
+        var numOfElementsInStorage=oldSavedItemsJsonArray.length;
+        var nextId=4+numOfElementsInStorage+1;
+        var newItem:Models.Pin={
+        id:nextId,
+        name:nameInput,
+        imageUrl:urlInput,
+        text:opisInput,
+      
+      }
+        var oldItems=localStorage.getItem("newItems");
+        var oldSavedItemsJsonArray=JSON.parse(oldItems) || [];
+        oldSavedItemsJsonArray.push(newItem);
+        var newItems=oldSavedItemsJsonArray;
+        localStorage.setItem("newItems",JSON.stringify(newItems));
+            this.modalRef.close();
   }
 
 open(loginModal) {

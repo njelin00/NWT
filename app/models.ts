@@ -9,5 +9,6 @@ export class Pin{
   min?:string;
   userInfo?:string;
   isPinned?:boolean;
+  isLike?:boolean;
 }
 }
